@@ -1,20 +1,21 @@
+import { randomUUID } from 'node:crypto';
 import { Property } from './property';
 
 export class Producer {
-  id: number;
-  cpfCnpj: string;
-  name: string;
-  properties: Property[];
+  public id: string;
+  public cpfCnpj: string;
+  public name: string;
+  public properties: Property[];
 
   constructor(
-    id: number,
     cpfCnpj: string,
     name: string,
     properties: Property[],
+    id?: string,
   ) {
-    this.id = id;
     this.cpfCnpj = cpfCnpj;
     this.name = name;
     this.properties = properties;
+    this.id = id ?? randomUUID();
   }
 }
