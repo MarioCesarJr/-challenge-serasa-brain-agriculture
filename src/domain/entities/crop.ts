@@ -11,7 +11,7 @@ export class Crop {
     cropName: string,
     harvestYear: number,
     property: Property,
-    id: string,
+    id?: string,
   ) {
     this.cropName = cropName;
     this.harvestYear = harvestYear;

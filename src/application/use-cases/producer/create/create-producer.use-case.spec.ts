@@ -1,18 +1,15 @@
+import { InMemoryProducerRepository } from '../../../../../test/repositories/in-memory-producer-repository';
 import { CreateProducerUseCase } from './create-producer.use-case';
-import { ProducerRepository } from 'src/domain/repositories/producer-repository';
-import { Producer } from 'src/domain/entities/producer';
 
-const fakeRepository: ProducerRepository = {
-  create: async (producer: Producer) => {
-    return producer;
-  },
-};
+let inMemoryProducerRepository: InMemoryProducerRepository;
+let createProducerUseCase: CreateProducerUseCase;
 
 describe('CreateProducerUseCase', () => {
-  let createProducerUseCase: CreateProducerUseCase;
-
   beforeEach(() => {
-    createProducerUseCase = new CreateProducerUseCase(fakeRepository);
+    inMemoryProducerRepository = new InMemoryProducerRepository();
+    createProducerUseCase = new CreateProducerUseCase(
+      inMemoryProducerRepository,
+    );
   });
 
   it('should create a producer', async () => {
@@ -22,6 +19,7 @@ describe('CreateProducerUseCase', () => {
       [],
     );
     expect(producer.cpfCnpj).toBe('12345678901234');
+    expect(inMemoryProducerRepository.producers[0].id).toEqual(producer.id);
   });
 
   it('should invalid cpf/cnpj producer', async () => {

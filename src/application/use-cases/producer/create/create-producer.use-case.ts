@@ -1,6 +1,6 @@
-import { Producer } from '../../../entities/producer';
-import { Property } from '../../../entities/property';
-import { ProducerRepository } from '../../../repositories/producer-repository';
+import { Producer } from '../../../../domain/entities/producer';
+import { Property } from '../../../../domain/entities/property';
+import { ProducerRepository } from '../../../../domain/repositories/producer-repository';
 
 export class CreateProducerUseCase {
   constructor(private producerRepository: ProducerRepository) {}
