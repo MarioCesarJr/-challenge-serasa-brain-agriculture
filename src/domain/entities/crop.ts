@@ -2,10 +2,10 @@ import { randomUUID } from 'node:crypto';
 import { Property } from './property';
 
 export class Crop {
-  id: string;
-  cropName: string;
-  harvestYear: number;
-  property: Property;
+  public id: string;
+  public cropName: string;
+  public harvestYear: number;
+  public property: Property;
 
   constructor(
     cropName: string,

@@ -1,5 +1,7 @@
+import { Injectable } from '@nestjs/common';
 import { ProducerRepository } from '../../../../domain/repositories/producer-repository';
 
+@Injectable()
 export class DeleteProducerUseCase {
   constructor(private producerRepository: ProducerRepository) {}
 

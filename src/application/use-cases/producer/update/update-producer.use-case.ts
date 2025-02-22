@@ -1,7 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { Producer } from '../../../../domain/entities/producer';
 import { Property } from '../../../../domain/entities/property';
 import { ProducerRepository } from '../../../../domain/repositories/producer-repository';
 
+@Injectable()
 export class UpdateProducerUseCase {
   constructor(private producerRepository: ProducerRepository) {}
 
@@ -17,7 +19,7 @@ export class UpdateProducerUseCase {
     }
 
     if (!this.isValidCpfCnpj(cpfCnpj)) {
-      throw new Error('CPF ou CNPJ inválido');
+      throw new Error('CPF or CNPJ invalid');
     }
 
     producer.cpfCnpj = cpfCnpj;
