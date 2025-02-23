@@ -11,3 +11,57 @@ docker compose up -d --build && npx prisma migrate dev --name init
  ```bash
  docker compose down  
  ````
+
+ # Rodar testes de unidade
+ ```bash
+ npm run test:watch 
+ ````
+
+ # Endpoints:
+ ## Cadastro de produtores rurais
+ ```bash
+ curl -X 'POST' \
+  'http://localhost:3000/producers' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "cpfCnpj": "12345678000138",
+        "name": "Produtor Exemplo",
+        "properties": [
+                {
+                        "farmName": "Fazenda Ouro Preto",
+                        "city": "Goiânia",
+                        "state": "Goiás",
+                        "totalArea": 1000,
+                        "arableArea": 800,
+                        "vegetationArea": 200,
+                        "crops": [
+                                        {
+                                                "cropName": "Soja",
+                                                "harvestYear": 2025
+                                        },
+                                        {
+                                                "cropName": "Café",
+                                                "harvestYear": 2025
+                                        }
+                        ]
+                }
+
+        ]
+}'
+ ````
+##  Edição de produtor rural
+```bash
+curl -X 'PUT' \
+  'http://localhost:3000/producers/c4daf5d1-87b3-47ce-adce-f3c4fe8634b2' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "cpfCnpj": "12345678000108",
+        "name": "Produtor Exemplo"
+}'
+````
+## Exclusão de produtor rural
+```bash
+curl -X DELETE http://localhost:3000/producers/7ae56b17-b5ee-45d7-9457-f94375723361
+```` 
