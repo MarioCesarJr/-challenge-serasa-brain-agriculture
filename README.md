@@ -17,6 +17,11 @@ docker compose up -d --build && npx prisma migrate dev --name init
  npm run test:watch 
  ````
 
+  # Rodar testes e2e
+ ```bash
+ npm run test:vitest:e2e 
+ ````
+
  # Endpoints:
  ## Cadastro de produtores rurais
  ```bash
