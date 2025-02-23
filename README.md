@@ -1,4 +1,22 @@
-# Como rodar o app:
+# Como Rodar a Aplicação e os Testes
+
+## Pré-requisitos
+Antes de rodar a aplicação e os testes, você precisa ter as seguintes ferramentas instaladas em sua máquina:
+- Node 18 ou superior
+- IDE (opcional)
+- [Postgres database](https://www.postgresql.org/download/)
+
+ ## Rodar testes de unidade
+ ```bash
+ npm run test:watch 
+ ````
+
+  ## Rodar testes e2e
+ ```bash
+ npm run test:vitest:e2e 
+ ````
+
+## Como rodar o app com docker:
 
 ## Executar o docker compose
  ### Iniciar o app com o banco postgres e rodar as migrações do prisma
@@ -11,18 +29,7 @@ docker compose up -d --build && npx prisma migrate dev --name init
  ```bash
  docker compose down  
  ````
-
- # Rodar testes de unidade
- ```bash
- npm run test:watch 
- ````
-
-  # Rodar testes e2e
- ```bash
- npm run test:vitest:e2e 
- ````
-
- # Endpoints:
+ ## Endpoints:
  ## Cadastro de produtores rurais
  ```bash
  curl -X 'POST' \
@@ -70,3 +77,13 @@ curl -X 'PUT' \
 ```bash
 curl -X DELETE http://localhost:3000/producers/7ae56b17-b5ee-45d7-9457-f94375723361
 ```` 
+
+## Dasboard
+```bash
+curl http://localhost:3000/dashboard
+```
+
+## swagger URL
+```bash
+http://localhost:3000/docs
+````
