@@ -68,7 +68,7 @@ describe('Update producer (E2E)', () => {
 
     expect(response.statusCode).toBe(200);
 
-    const producerOnDatabase = await prisma.producer.findUnique({
+    const producerOnDatabase = await prisma.producer.findMany({
       where: {
         cpfCnpj: '12345678000158',
       },
