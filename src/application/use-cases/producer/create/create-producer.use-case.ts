@@ -16,6 +16,16 @@ export class CreateProducerUseCase {
       throw new Error('CPF ou CNPJ inválido');
     }
 
+    if (properties.length > 0) {
+      properties.forEach((obj) => {
+        if (obj.arableArea + obj.vegetationArea > obj.totalArea) {
+          throw new Error(
+            'A soma das áreas agricultáveis e de vegetação não pode ultrapassar a área total.',
+          );
+        }
+      });
+    }
+
     const producer = new Producer(cpfCnpj, name, properties);
 
     await this.producerRepository.create(producer);

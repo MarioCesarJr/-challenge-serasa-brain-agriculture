@@ -1,3 +1,4 @@
+import { Property } from '../../../../domain/entities/property';
 import { InMemoryProducerRepository } from '../../../../../test/repositories/in-memory-producer-repository';
 import { CreateProducerUseCase } from './create-producer.use-case';
 
@@ -26,5 +27,25 @@ describe('CreateProducerUseCase', () => {
     await expect(
       createProducerUseCase.execute('12345678901234666', 'Test Producer', []),
     ).rejects.toThrow('CPF ou CNPJ inválido');
+  });
+
+  it('should throw error if the sum of arable and vegetation area exceeds the total area', async () => {
+    const propertyA = new Property(
+      'Fazenda A',
+      'Cidade A',
+      'Estado A',
+      100,
+      60,
+      50,
+      [],
+    );
+
+    await expect(
+      createProducerUseCase.execute('12345678901234', 'Test Producer', [
+        propertyA,
+      ]),
+    ).rejects.toThrow(
+      'A soma das áreas agricultáveis e de vegetação não pode ultrapassar a área total.',
+    );
   });
 });

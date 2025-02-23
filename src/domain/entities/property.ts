@@ -1,6 +1,5 @@
 import { randomUUID } from 'node:crypto';
 import { Crop } from './crop';
-import { Producer } from './producer';
 
 export class Property {
   public id: string;
@@ -10,7 +9,6 @@ export class Property {
   public totalArea: number;
   public arableArea: number;
   public vegetationArea: number;
-  public producer: Producer;
   public crops: Crop[];
 
   constructor(
@@ -20,7 +18,6 @@ export class Property {
     totalArea: number,
     arableArea: number,
     vegetationArea: number,
-    producer: Producer,
     crops: Crop[],
     id?: string,
   ) {
@@ -30,7 +27,6 @@ export class Property {
     this.totalArea = totalArea;
     this.arableArea = arableArea;
     this.vegetationArea = vegetationArea;
-    this.producer = producer;
     this.crops = crops;
     this.id = id ?? randomUUID();
   }
