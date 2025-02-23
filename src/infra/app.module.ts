@@ -4,10 +4,11 @@ import { DatabaseModule } from './database/database.module';
 import { CreateProducerUseCase } from 'src/application/use-cases/producer/create/create-producer.use-case';
 import { UpdateProducerUseCase } from 'src/application/use-cases/producer/update/update-producer.use-case';
 import { DeleteProducerUseCase } from 'src/application/use-cases/producer/delete/delete-producer.use-case';
+import { UpdateProducerController } from './http/controllers/update-producer.controller';
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [CreateProducerController],
+  controllers: [CreateProducerController, UpdateProducerController],
   providers: [
     CreateProducerUseCase,
     UpdateProducerUseCase,

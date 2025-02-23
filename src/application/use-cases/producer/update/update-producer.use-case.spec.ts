@@ -28,7 +28,6 @@ describe('UpdateProducerUseCase', () => {
       producer?.id,
       '12345678901234',
       'Test Producer updated',
-      [],
     );
 
     expect(updateProducer?.name).toEqual('Test Producer updated');

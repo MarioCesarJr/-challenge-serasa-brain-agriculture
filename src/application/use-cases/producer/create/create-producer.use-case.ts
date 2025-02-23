@@ -17,6 +17,7 @@ export class CreateProducerUseCase {
     }
 
     const producer = new Producer(cpfCnpj, name, properties);
+
     await this.producerRepository.create(producer);
     return producer;
   }

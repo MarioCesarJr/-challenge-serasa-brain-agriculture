@@ -22,10 +22,12 @@ export class PrismaProducerRepository implements ProducerRepository {
             arableArea: property.arableArea,
             vegetationArea: property.vegetationArea,
             crops: {
-              create: property.crops.map((crop) => ({
-                cropName: crop.cropName,
-                harvestYear: crop.harvestYear,
-              })),
+              create: property?.crops
+                ? property.crops.map((crop) => ({
+                    cropName: crop.cropName,
+                    harvestYear: crop.harvestYear,
+                  }))
+                : [],
             },
           })),
         },
@@ -48,35 +50,6 @@ export class PrismaProducerRepository implements ProducerRepository {
       data: {
         cpfCnpj: producer.cpfCnpj,
         name: producer.name,
-        properties: {
-          update: producer.properties.map((property) => ({
-            where: { id: property.id },
-            data: {
-              farmName: property.farmName,
-              city: property.city,
-              state: property.state,
-              totalArea: property.totalArea,
-              arableArea: property.arableArea,
-              vegetationArea: property.vegetationArea,
-              crops: {
-                update: property.crops.map((crop) => ({
-                  where: { id: crop.id },
-                  data: {
-                    cropName: crop.cropName,
-                    harvestYear: crop.harvestYear,
-                  },
-                })),
-              },
-            },
-          })),
-        },
-      },
-      include: {
-        properties: {
-          include: {
-            crops: true,
-          },
-        },
       },
     });
 

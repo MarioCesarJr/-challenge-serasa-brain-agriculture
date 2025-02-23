@@ -22,7 +22,7 @@ export class CreateProducerController {
       const producer = await this.createProducer.execute(
         cpfCnpj,
         name,
-        properties,
+        properties ?? [],
       );
 
       return producer;
