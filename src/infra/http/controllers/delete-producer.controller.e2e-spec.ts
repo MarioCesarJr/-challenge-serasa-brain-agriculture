@@ -4,7 +4,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 
-describe('Update producer (E2E)', () => {
+describe('Delete producer (E2E)', () => {
   let app: INestApplication;
   let prisma: PrismaService;
 
@@ -20,7 +20,7 @@ describe('Update producer (E2E)', () => {
     await app.init();
   });
 
-  test('[PUT] /producers/:id', async () => {
+  test('[DELETE] /producers/:id', async () => {
     const producerCreated = await prisma.producer.create({
       data: {
         cpfCnpj: '12345678000199',
@@ -60,20 +60,17 @@ describe('Update producer (E2E)', () => {
     });
 
     const response = await request(app.getHttpServer())
-      .put(`/producers/${producerCreated.id}`)
-      .send({
-        cpfCnpj: '12345678000158',
-        name: 'Produtor Exemplo atualizado',
-      });
+      .delete(`/producers/${producerCreated.id}`)
+      .send();
 
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(204);
 
     const producerOnDatabase = await prisma.producer.findUnique({
       where: {
-        cpfCnpj: '12345678000158',
+        id: producerCreated.id,
       },
     });
 
-    expect(producerOnDatabase).toBeTruthy();
+    expect(producerOnDatabase).toBeNull();
   });
 });

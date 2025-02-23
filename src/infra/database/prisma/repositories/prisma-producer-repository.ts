@@ -57,6 +57,20 @@ export class PrismaProducerRepository implements ProducerRepository {
   }
 
   async delete(id: string): Promise<void> {
+    await this.prisma.crop.deleteMany({
+      where: {
+        property: {
+          producerId: id,
+        },
+      },
+    });
+
+    await this.prisma.property.deleteMany({
+      where: {
+        producerId: id,
+      },
+    });
+
     await this.prisma.producer.delete({
       where: { id },
     });
