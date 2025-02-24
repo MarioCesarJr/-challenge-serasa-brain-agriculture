@@ -23,7 +23,7 @@ describe('Delete producer (E2E)', () => {
   test('[DELETE] /producers/:id', async () => {
     const producerCreated = await prisma.producer.create({
       data: {
-        cpfCnpj: '12345678000199',
+        cpfCnpj: '10792719000166',
         name: 'Produtor Exemplo',
         properties: {
           create: [

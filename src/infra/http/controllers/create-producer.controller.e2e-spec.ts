@@ -24,7 +24,7 @@ describe('Create producer (E2E)', () => {
     const response = await request(app.getHttpServer())
       .post('/producers')
       .send({
-        cpfCnpj: '12345678000158',
+        cpfCnpj: '10792719000166',
         name: 'Produtor Exemplo',
         properties: [
           {
@@ -52,7 +52,7 @@ describe('Create producer (E2E)', () => {
 
     const producerOnDatabase = await prisma.producer.findMany({
       where: {
-        cpfCnpj: '12345678000158',
+        cpfCnpj: '10792719000166',
       },
     });
 

@@ -23,7 +23,7 @@ describe('Update producer (E2E)', () => {
   test('[PUT] /producers/:id', async () => {
     const producerCreated = await prisma.producer.create({
       data: {
-        cpfCnpj: '12345678000199',
+        cpfCnpj: '10792719000166',
         name: 'Produtor Exemplo',
         properties: {
           create: [
@@ -62,7 +62,7 @@ describe('Update producer (E2E)', () => {
     const response = await request(app.getHttpServer())
       .put(`/producers/${producerCreated.id}`)
       .send({
-        cpfCnpj: '12345678000158',
+        cpfCnpj: '82630034000124',
         name: 'Produtor Exemplo atualizado',
       });
 
@@ -70,7 +70,7 @@ describe('Update producer (E2E)', () => {
 
     const producerOnDatabase = await prisma.producer.findMany({
       where: {
-        cpfCnpj: '12345678000158',
+        cpfCnpj: '82630034000124',
       },
     });
 

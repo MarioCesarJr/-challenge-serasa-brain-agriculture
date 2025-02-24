@@ -12,9 +12,13 @@ import { GetTotalPropertiesUseCase } from 'src/application/use-cases/property/ge
 import { GetCropsByNameUseCase } from 'src/application/use-cases/crop/get-crops-by-name.use-case';
 import { GetDashboardDataUseCase } from 'src/application/use-cases/dashboard/dashboard.use-case';
 import { DashboardController } from './http/controllers/dashboard.controller';
+import { CpfValidatorService } from './validators/cpf-validator-service';
+import { CnpjValidatorService } from './validators/cnpj-validator-service';
+import { CpfCnpjIdentifyService } from './validators/cpf-cnpj-identify-service';
+import { ValidatorModule } from './validators/validator.module';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, ValidatorModule],
   controllers: [
     CreateProducerController,
     UpdateProducerController,
@@ -30,6 +34,10 @@ import { DashboardController } from './http/controllers/dashboard.controller';
     GetTotalPropertiesUseCase,
     GetCropsByNameUseCase,
     GetDashboardDataUseCase,
+    CpfValidatorService,
+    CnpjValidatorService,
+    CpfCnpjIdentifyService,
   ],
+  exports: [CpfValidatorService, CnpjValidatorService, CpfCnpjIdentifyService],
 })
 export class AppModule {}

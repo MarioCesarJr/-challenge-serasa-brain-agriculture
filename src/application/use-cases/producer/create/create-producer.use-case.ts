@@ -2,18 +2,34 @@ import { Injectable } from '@nestjs/common';
 import { Producer } from '../../../../domain/entities/producer';
 import { Property } from '../../../../domain/entities/property';
 import { ProducerRepository } from '../../../../domain/repositories/producer-repository';
+import { CpfCnpjIdentify } from '../../../../domain/validators/cpf-cnpj-identify';
+import { CpfValidator } from '../../../../domain/validators/cpf-validator';
+import { CnpjValidator } from '../../../../domain/validators/cnpj-validator';
 
 @Injectable()
 export class CreateProducerUseCase {
-  constructor(private producerRepository: ProducerRepository) {}
+  constructor(
+    private producerRepository: ProducerRepository,
+    private cpfCnpjIdentify: CpfCnpjIdentify,
+    private cnpjValidator: CnpjValidator,
+    private cpfValidator: CpfValidator,
+  ) {}
 
   async execute(
     cpfCnpj: string,
     name: string,
     properties: Property[],
   ): Promise<Producer> {
-    if (!this.isValidCpfCnpj(cpfCnpj)) {
-      throw new Error('CPF ou CNPJ inválido');
+    if (this.cpfCnpjIdentify.check(cpfCnpj) === 'CNPJ') {
+      if (!this.cnpjValidator.isValid(cpfCnpj)) {
+        throw new Error('CNPJ inválido');
+      }
+    }
+
+    if (this.cpfCnpjIdentify.check(cpfCnpj) === 'CPF') {
+      if (!this.cpfValidator.isValid(cpfCnpj)) {
+        throw new Error('CPF inválido');
+      }
     }
 
     if (properties.length > 0) {
@@ -30,10 +46,5 @@ export class CreateProducerUseCase {
 
     await this.producerRepository.create(producer);
     return producer;
-  }
-
-  private isValidCpfCnpj(cpfCnpj: string): boolean {
-    const regex = /^(?:\d{11}|\d{14})$/;
-    return regex.test(cpfCnpj);
   }
 }
