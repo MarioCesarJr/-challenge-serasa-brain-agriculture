@@ -5,7 +5,7 @@ import { CropRepository } from 'src/domain/repositories/crop-repository';
 export class GetCropsByNameUseCase {
   constructor(private readonly cropRepository: CropRepository) {}
 
-  async execute(name: string): Promise<any> {
-    return await this.cropRepository.getCropsByName(name);
+  async execute(): Promise<any> {
+    return await this.cropRepository.getCropsByName();
   }
 }

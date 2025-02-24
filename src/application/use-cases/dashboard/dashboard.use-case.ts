@@ -16,7 +16,7 @@ export class GetDashboardDataUseCase {
 
     const propertiesByState =
       await this.propertyRepository.getPropertiesByState();
-    const cropsByName = await this.cropRepository.getCropsByName('');
+    const cropsByName = await this.cropRepository.getCropsByName();
     const landUse = await this.propertyRepository.getLandUseByType();
 
     return {

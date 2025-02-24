@@ -11,20 +11,41 @@ export class PrismaPropertyRepository implements PropertyRepository {
   }
 
   async getPropertiesByState(): Promise<any[]> {
-    return await this.prisma.property.findMany({
-      select: {
-        state: true,
+    const data = await this.prisma.property.groupBy({
+      by: ['state'],
+      _sum: {
+        totalArea: true,
       },
     });
+
+    return data.map((item) => ({
+      name: item.state,
+      totalArea: item._sum.totalArea,
+    }));
   }
 
   async getLandUseByType(): Promise<any[]> {
-    return await this.prisma.property.findMany({
-      select: {
-        arableArea: true,
-        vegetationArea: true,
+    const properties = await this.prisma.property.findMany();
+
+    const arableArea = properties.reduce(
+      (acc, property) => acc + property.arableArea,
+      0,
+    );
+    const vegetationArea = properties.reduce(
+      (acc, property) => acc + property.vegetationArea,
+      0,
+    );
+
+    return [
+      {
+        name: 'Área Agricultável',
+        value: arableArea,
       },
-    });
+      {
+        name: 'Área de Vegetação',
+        value: vegetationArea,
+      },
+    ];
   }
 
   async getTotalArea(): Promise<number> {

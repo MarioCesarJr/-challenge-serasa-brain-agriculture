@@ -6,14 +6,17 @@ import { CropRepository } from 'src/domain/repositories/crop-repository';
 export class PrismaCropRepository implements CropRepository {
   constructor(private prisma: PrismaService) {}
 
-  async getCropsByName(cropName: string): Promise<any[]> {
-    return this.prisma.crop.findMany({
-      where: {
-        cropName: {
-          contains: cropName,
-          mode: 'insensitive',
-        },
+  async getCropsByName(): Promise<any[]> {
+    const data = await this.prisma.crop.groupBy({
+      by: ['cropName'],
+      _count: {
+        id: true,
       },
     });
+
+    return data.map((item) => ({
+      cropName: item.cropName,
+      value: item._count.id,
+    }));
   }
 }
