@@ -6,8 +6,10 @@ import {
   HttpException,
   Post,
 } from '@nestjs/common';
+import { ApiBody } from '@nestjs/swagger';
 import { CreateProducerUseCase } from 'src/application/use-cases/producer/create/create-producer.use-case';
 import { Producer } from 'src/domain/entities/producer';
+import { CreateProducerDto } from '../dto/create-producer.dto';
 
 @Controller('producers')
 export class CreateProducerController {
@@ -15,6 +17,7 @@ export class CreateProducerController {
 
   @Post()
   @HttpCode(201)
+  @ApiBody({ type: CreateProducerDto })
   async handle(@Body() body: Producer) {
     const { cpfCnpj, name, properties } = body;
 

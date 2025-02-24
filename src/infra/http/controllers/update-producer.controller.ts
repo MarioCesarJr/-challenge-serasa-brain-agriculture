@@ -9,6 +9,8 @@ import {
 } from '@nestjs/common';
 import { UpdateProducerUseCase } from 'src/application/use-cases/producer/update/update-producer.use-case';
 import { Producer } from 'src/domain/entities/producer';
+import { UpdateProducerDto } from '../dto/update-producer.dto';
+import { ApiBody } from '@nestjs/swagger';
 
 @Controller('producers/:id')
 export class UpdateProducerController {
@@ -16,6 +18,7 @@ export class UpdateProducerController {
 
   @Put()
   @HttpCode(200)
+  @ApiBody({ type: UpdateProducerDto })
   async handle(@Param('id') id: string, @Body() body: Producer) {
     const { cpfCnpj, name } = body;
 
