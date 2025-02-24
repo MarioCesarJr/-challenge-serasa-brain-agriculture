@@ -20,16 +20,14 @@ export class UpdateProducerUseCase {
       throw new Error('Produtor não econtrado');
     }
 
-    if (this.cpfCnpjIdentify.check(cpfCnpj) === 'CNPJ') {
-      if (!this.cnpjValidator.isValid(cpfCnpj)) {
-        throw new Error('CNPJ inválido');
-      }
+    const documentType = this.cpfCnpjIdentify.check(cpfCnpj);
+
+    if (documentType === 'CNPJ' && !this.cnpjValidator.isValid(cpfCnpj)) {
+      throw new Error('CNPJ inválido');
     }
 
-    if (this.cpfCnpjIdentify.check(cpfCnpj) === 'CPF') {
-      if (!this.cpfValidator.isValid(cpfCnpj)) {
-        throw new Error('CPF inválido');
-      }
+    if (documentType === 'CPF' && !this.cpfValidator.isValid(cpfCnpj)) {
+      throw new Error('CPF inválido');
     }
 
     producer.id = id;
