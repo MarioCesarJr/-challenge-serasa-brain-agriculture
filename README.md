@@ -42,7 +42,7 @@ docker compose up -d --build && npx prisma migrate dev --name init
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
-        "cpfCnpj": "12345678000138",
+        "cpfCnpj": "40779487000177",
         "name": "Produtor Exemplo",
         "properties": [
                 {
@@ -74,7 +74,7 @@ curl -X 'PUT' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
-        "cpfCnpj": "12345678000108",
+        "cpfCnpj": "69362912000100",
         "name": "Produtor Exemplo"
 }'
 ````
