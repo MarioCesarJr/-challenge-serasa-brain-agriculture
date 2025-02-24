@@ -6,12 +6,17 @@ Antes de rodar a aplicação e os testes, você precisa ter as seguintes ferrame
 - IDE (opcional)
 - [Postgres database](https://www.postgresql.org/download/)
 
- ## Rodar testes de unidade
+## Executar migração prisma
+```bash
+npx prisma migrate dev --name init
+````
+
+ ## Executar testes de unidade
  ```bash
  npm run test:watch 
  ````
 
-  ## Rodar testes e2e
+  ## Executar testes e2e
  ```bash
  npm run test:vitest:e2e 
  ````
