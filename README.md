@@ -2,7 +2,7 @@
 
 ## Pré-requisitos
 Antes de rodar a aplicação e os testes, você precisa ter as seguintes ferramentas instaladas em sua máquina:
-- Node 18 ou superior
+- Node 22 ou superior
 - IDE (opcional)
 - [Postgres database](https://www.postgresql.org/download/)
 

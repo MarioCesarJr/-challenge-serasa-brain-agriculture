@@ -8,7 +8,7 @@ export class DeleteProducerUseCase {
   async execute(id: string): Promise<void> {
     const producer = await this.producerRepository.findById(id);
     if (!producer) {
-      throw new Error('Producer not found');
+      throw new Error('Produtor não econtrado');
     }
 
     await this.producerRepository.delete(id);

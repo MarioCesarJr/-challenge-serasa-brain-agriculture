@@ -44,7 +44,10 @@ export class CreateProducerUseCase {
 
     const producer = new Producer(cpfCnpj, name, properties);
 
-    await this.producerRepository.create(producer);
+    const producerCreated = await this.producerRepository.create(producer);
+
+    producer.id = producerCreated.id;
+
     return producer;
   }
 }

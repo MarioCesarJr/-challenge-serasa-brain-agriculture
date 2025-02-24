@@ -17,7 +17,7 @@ export class UpdateProducerUseCase {
   async execute(id: string, cpfCnpj: string, name: string): Promise<Producer> {
     const producer = await this.producerRepository.findById(id);
     if (!producer) {
-      throw new Error('Producer not found');
+      throw new Error('Produtor não econtrado');
     }
 
     if (this.cpfCnpjIdentify.check(cpfCnpj) === 'CNPJ') {
