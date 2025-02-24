@@ -4,7 +4,8 @@ import { IsNotEmpty, IsString } from 'class-validator';
 export class UpdateProducerDto {
   @ApiProperty({
     description: 'CPF ou CNPJ do produtor',
-    example: '12345678000158',
+    example: '98584893000164',
+    type: String,
   })
   @IsString()
   @IsNotEmpty()

@@ -75,7 +75,8 @@ class PropertyDto {
 export class CreateProducerDto {
   @ApiProperty({
     description: 'CPF ou CNPJ do produtor',
-    example: '12345678000158',
+    example: '98584893000164',
+    type: String,
   })
   @IsString()
   @IsNotEmpty()
