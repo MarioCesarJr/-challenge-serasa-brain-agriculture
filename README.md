@@ -18,7 +18,12 @@ Se você ainda não tiver rodado a migração do banco de dados, use o comando a
 ```bash
 npx prisma migrate dev --name init
 ````
-## 3. Rodar a Aplicação Localmente
+## 3. Renomear o Arquivo ```.env.example```
+Antes de rodar a aplicação, você deve renomear um arquivo na raiz do projeto chamado ```.env.example```. Renomeie-o para ```.env```:
+```bash
+mv .env.example .env
+```` 
+## 4. Rodar a Aplicação Localmente
 Para rodar a aplicação localmente, execute o seguinte comando:
 ```bash
 npm run start:dev
